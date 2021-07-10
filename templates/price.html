@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.navbar{
+	position: fixed;
+	height: 150px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 20px 100px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 30px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover{
+	background: rgb(37, 85, 173);
+	border-radius: 4px;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+}
+.center h1{
+	color: rgb(0, 0, 0);
+	font-size: 50px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+    background: rgb(37, 85, 173,.6);
+}
+.center h2{
+	color: gray;
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 30px;
+	width: 885px;
+	text-align: center;
+}
+
+label{
+    font-size: 20px;
+	font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+	<div class="wrapper">
+			<nav class="navbar">
+				<img class="logo" src="./static/logo1.jpg" >
+				<ul>
+					<li><a  href="{{ url_for('homepage') }}">Home</a></li>
+					<li><a class="active" href="{{ url_for('price') }}">Price Predictor</a></li>
+					<li><a href="{{ url_for('yield_predict') }}">Yield Predictor</a></li>
+					<li><a href="{{ url_for('view') }}">Khata Book</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+			<div class="center">
+				<h1>Price Predictor</h1>
+				<div class="form-group">
+					<form action="{{ url_for('predict_price')}}" method = "POST" >
+					  <label>District</label>
+					  <select name="district" class="custom-select">
+						  <option value="Ahmednagar">Ahmednagar</option>
+						  <option value="Akola">Akola</option>
+						  <option value="Amarawati">Amarawati</option>
+						  <option value="Aurangabad">Aurangabad</option>
+						  <option value="Beed">Beed</option>
+						  <option value="Bhandara">Bhandara</option>
+						  <option value="Buldhana">Buldhana</option>
+						  <option value="Chandrapur">Chandrapur</option>
+						  <option value="Dhule">Dhule</option>
+						  <option value="Gadchiroli">Gadchiroli</option>
+						  <option value="Gondiya">Gondiya</option>
+						  <option value="Hingoli">Hingoli</option>
+						  <option value="Jalgaon">Jalgaon</option>
+						  <option value="Jalna">Jalna</option>
+						  <option value="Kolhapur">Kolhapur</option>
+						  <option value="Latur">Latur</option>
+						  <option value="Mumbai">Mumbai</option>
+						  <option value="Nagpur">Nagpur</option>
+						  <option value="Nanded">Nanded</option>
+						  <option value="Nandurbar">Nandurbar</option>
+						  <option value="Nashik">Nashik</option>
+						  <option value="Osmanabad">Osmanabad</option>
+						  <option value="Parbhani">Parbhani</option>
+						  <option value="Pune">Pune</option>
+						  <option value="Raigad">Raigad</option>
+						  <option value="Ratnagiri">Ratnagiri</option>
+						  <option value="Sangli">Sangli</option>
+						  <option value="Satara">Satara</option>
+						  <option value="Sholapur">Sholapur</option>
+						  <option value="Sindhudurg">Sindhudurg</option>
+						  <option value="Thane">Thane</option>
+						  <option value="Vashim">Vashim</option>
+						  <option value="Wardha">Wardha</option>
+						  <option value="Yavatmal">Yavatmal</option>
+						</select>
+					  <label>Crop</label>
+						  <select name="crop" class="custom-select" >
+							<option value="Bajra">Bajra</option>
+							<option value="Cotton">Cotton</option>
+							<option value="Wheat">Wheat</option>
+							<option value="Jowar">Jowar</option>
+							<option value="Rice">Rice</option>
+							<option value="Groundnut">Groundnut</option>
+						  </select>
+						<br>
+						<br>
+					  <center><input type="submit" value="submit" class="btn btn-secondary btn-lg" /></center>
+					</form>
+					<h2>{{ output }}</h2>
+				  </div>
+			</div>
+		</div>
+</body>
+</html>

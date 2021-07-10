@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.navbar{
+	position: fixed;
+	height: 150px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 20px 100px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 30px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover{
+	background: rgb(37, 85, 173);
+	border-radius: 4px;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 60%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+}
+.center h1{
+	color: rgb(0, 0, 0);
+	font-size: 50px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+    background: rgb(37, 85, 173,.6);
+}
+.center h2{
+	color: black;
+	font-size: 40px;
+	font-weight: bold;
+	margin-top: 30px;
+	width: 885px;
+	text-align: center;
+}
+
+label{
+    font-size: 20px;
+	font-weight: bold;
+}
+
+    </style>
+
+</head>
+<body>
+	<div class="wrapper">
+			<nav class="navbar">
+				<img class="logo" src="static/logo1.jpg" >
+				<ul>
+					<li><a  href="{{ url_for('homepage') }}">Home</a></li>
+					<li><a href="{{ url_for('price') }}">Price Predictor</a></li>
+					<li><a href="{{ url_for('yield_predict') }}">Yield Predictor</a></li>
+					<li><a class="active" href="{{ url_for('view') }}">Khata Book</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+            <br>
+            <br>
+			<div class="center">
+                <h1>Khata Book Form</h1>
+	                    {%- for category, message in get_flashed_messages(with_categories = true) %}
+							 <div class = "alert alert-danger">
+								{{ message }}
+							 </div>
+						  {%- endfor %}
+                <div class="form-group">
+					<form action="#" method="post" >
+						<label for="Name">Activity</label>
+						<input type="text" id="Name"  name="Name" placeholder="Activity_Name" value="{{Name if Name}}" class="form-control" >
+
+						<label for="Description">Date</label>
+						<input type="text" id="Description" name="Description" placeholder="DD-MM-YYYY"  value="{{Description if Description}}" class="form-control" >
+
+						<label for="Expenses">Expenses</label>
+						<input type="number" id="Expenses" name="Expenses" placeholder="Transaction_Amount" value="{{Transaction if Transaction}}" class="form-control" >
+
+						<label for="Mode">Type</label>
+							   <select id="Mode" name="Mode"  value="{{Mode if Mode}}" class="custom-select" >
+
+								<option value="Cr">Borrowed</option>
+								<option value="Dr">Spent</option>
+
+							</select> <br><br>
+
+								<p align="center"><input type="submit" value="Submit" class="btn btn-secondary btn-lg" /></p>
+
+					</form>
+					<h3><a href = "{{ url_for('view') }}">View Transactions</a></h3>
+					<h3><a href = "{{ url_for('delete') }}">Delete Tasks</a></h3>
+				</div>
+		</div>
+		</div>
+
+</body>
+</html>

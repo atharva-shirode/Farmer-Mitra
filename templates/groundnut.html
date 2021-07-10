@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+
+}
+
+.navbar{
+	height: 150px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+}
+.navbar .logo{
+	width: 140px;
+	height: auto;
+	padding: 20px 100px;
+}
+.navbar ul{
+	float: right;
+	margin-right: 20px;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 8px;
+	display: inline-block;
+	line-height: 80px;
+}
+.navbar ul li a{
+	font-size: 30px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 6px 13px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover{
+	background: rgb(37, 85, 173);
+	border-radius: 4px;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+}
+
+.center{
+	margin-top:500px;
+}
+.center h1{
+	color: rgb(0, 0, 0);
+	font-size: 40px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.center h2{
+	color: black;
+	font-size: 25px;
+	font-weight: bold;
+	margin-top: 30px;
+	width: 885px;
+}
+
+label{
+    font-size: 20px;
+	font-weight: bold;
+}
+
+.content{
+	position: relative;
+}
+
+.info{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.infohead{
+	font-size: 30px;
+	font-weight: bold;
+}
+
+    </style>
+
+</head>
+<body>
+	<div class="wrapper">
+			<nav class="navbar">
+				<img class="logo" src="/static/logo1.jpg" >
+				<ul>
+					<li><a  href="{{ url_for('homepage') }}">Home</a></li>
+					<li><a href="{{ url_for('price') }}">Price Predictor</a></li>
+					<li><a href="{{ url_for('yield_predict') }}">Yield Predictor</a></li>
+					<li><a  href="{{ url_for('Task') }}">Khata Book</a></li>
+					<li><a class="active" href="#">About</a></li>
+				</ul>
+			</nav>
+			<div class="center">
+                <h1>GROUNDNUT</h1>
+					{% if dist_rainfall > 50 and dist_rainfall < 75 and ph > 5.9 and ph < 6.6 : %}
+                        <h1>Predicted yield in {{district2}} would be 10-12 Qtl/Acre</h1>
+                    {% elif dist_rainfall > 50 and ph > 5.9 and ph < 6.6  : %}
+                        <h1>Predicted yield in {{district2}} would be 19-22 Qtl/Acre</h1>
+                    {% else: %}
+                        <h1>pH value of soil in {{district2}} is not suitable for Groundnut...Hence,It is not advisable to cultivate Groundnuts here.</h1>
+                    {% endif %}
+				<center><img  src="/static/groundnut.jpg" width="300" height="300"> </center>
+				<h2 class="infohead">How to increase yield :</h2>
+				<ul class="info">
+				  <li>Row to Row spacing should be 30cm</li>
+                    <li>Plant to Plant spacing should be 22.5 cm</li>
+                    <li>Best time for Sowing is last week of June to first week of July</li>
+                </ul>
+				<h2>Fertilizers:</h2>
+				<table class="table table-striped">
+					  <tr>
+						<th>Type</th>
+						<th>kg/acre</th>
+					  </tr>
+					  <tr>
+						<td>UREA</td>
+						<td>13</td>
+					  </tr>
+					<tr>
+						<td>SSP(Single Superphosphate)</td>
+						<td>50</td>
+                    </tr>
+                    <tr>
+						<td>MOP(Muriate of Potash)</td>
+						<td>17</td>
+                    </tr>
+				</table>
+				<h2>Nutrient:</h2>
+				<table class="table table-striped">
+					  <tr>
+						<th>Requirement</th>
+						<th>Kg/Acre</th>
+					  </tr>
+					  <tr>
+						<td>Nitrogen</td>
+						<td>6</td>
+					  </tr>
+					 <tr>
+						<td>Phosporous</td>
+						<td>8</td>
+					  </tr>
+                    <tr>
+						<td>Potash</td>
+						<td>10</td>
+					  </tr>
+				</table>
+		</div>
+	</div>
+
+</body>
+</html>
